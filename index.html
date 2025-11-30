@@ -1,602 +1,1133 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>תיק עבודות | בני דניאל</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600&family=Rubik:wght@400;700;900&family=Varela+Round&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600&family=Montserrat:wght@400;600;800&family=Rubik:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
     <style>
-        :root {
-            /* --- צבעים --- */
-            --bg-color: #0b1120;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-secondary: #94a3b8;
-            
-            --accent: #38bdf8;
-            --accent-secondary: #818cf8;
-            --gradient-text: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-            
-            --nav-bg: rgba(11, 17, 32, 0.85);
-            --border-color: rgba(255,255,255,0.08);
-            --hover-color: #ffffff;
-            
-            --whatsapp: #25D366;
-            --phone: #0ea5e9;
-            --email: #f43f5e;
-            
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+      :root {
+        /* --- פלטת צבעים מהתמונה color.png --- */
+        --col-darkest: #0d1f23;
+        --col-dark: #132e35;
+        --col-med: #2d4a53;
+        --col-blue: #69818d; /* זה הצבע שביקשת להשתמש בו */
+        --col-light: #afb3b7;
+        --col-grey: #5a636a;
 
-        body.light-mode {
-            --bg-color: #f0f9ff;
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-secondary: #475569;
-            --accent: #0284c7;
-            --accent-secondary: #4f46e5;
-            --gradient-text: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
-            --nav-bg: rgba(255, 255, 255, 0.9);
-            --border-color: rgba(0,0,0,0.08);
-            --hover-color: #000000;
-        }
+        /* --- משתנים סמנטיים --- */
+        --bg-body: var(--col-darkest);
+        --bg-card: var(--col-dark);
+        --bg-nav: rgba(13, 31, 35, 0.98);
+        --border-color: rgba(105, 129, 141, 0.2);
 
-        /* --- נגישות --- */
-        html.large-text-mode { font-size: 115% !important; }
-        body.high-contrast-mode { 
-            --bg-color: #000000; --card-bg: #000000; 
-            --text-secondary: #ffff00; --text-main: #ffffff; 
-            --accent: #ffff00; --border-color: #fff;
-            --hover-color: #ffff00; --gradient-text: none;
-        }
-        body.high-contrast-mode * { background-color: black !important; color: yellow !important; border-color: white !important; }
-        body.readable-font-mode, body.readable-font-mode * {
-            font-family: Arial, Helvetica, sans-serif !important; letter-spacing: 0.5px !important; line-height: 1.6 !important;
-        }
-        .grayscale-active { filter: grayscale(100%); }
-        body.tts-active { cursor: help !important; }
+        --text-main: var(--col-light);
+        --text-heading: #ffffff;
+        --text-muted: var(--col-blue);
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        --accent: var(--col-blue);
+        --hover-bg: var(--col-med);
 
-        body {
-            font-family: 'Assistant', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: background-color 0.3s, color 0.3s;
+        /* צבעים פונקציונליים */
+        --whatsapp: #25d366;
+        --phone: #0ea5e9;
+        --email: #f43f5e;
+
+        --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* --- Light Mode --- */
+      body.light-mode {
+        --bg-body: #f5f7fa;
+        --bg-card: #ffffff;
+        --bg-nav: rgba(255, 255, 255, 0.98);
+        --border-color: rgba(45, 74, 83, 0.15);
+
+        --text-main: #2d4a53;
+        --text-heading: #0d1f23;
+        --text-muted: #69818d;
+
+        --accent: var(--col-dark);
+        --hover-bg: #e8ecef;
+      }
+
+      /* --- Accessibility Modes --- */
+      html.large-text-mode {
+        font-size: 115% !important;
+      }
+      body.high-contrast-mode {
+        --bg-body: #000;
+        --bg-card: #000;
+        --bg-nav: #000;
+        --text-main: #ff0;
+        --text-heading: #fff;
+        --text-muted: #0f0;
+        --border-color: #fff;
+        --accent: #ff0;
+      }
+      body.high-contrast-mode * {
+        background-color: black !important;
+        color: yellow !important;
+        border-color: white !important;
+      }
+      body.readable-font-mode * {
+        font-family: Arial, sans-serif !important;
+        letter-spacing: 0.5px;
+        line-height: 1.6;
+      }
+      .grayscale-active {
+        filter: grayscale(100%);
+      }
+      body.tts-active {
+        cursor: help !important;
+      }
+
+      /* --- Base Reset --- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Assistant", sans-serif;
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        line-height: 1.6;
+        overflow-x: hidden;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      /* Smooth Scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      h1,
+      h2,
+      h3,
+      .logo {
+        font-family: "Rubik", "Montserrat", sans-serif;
+        color: var(--text-heading);
+      }
+      button {
+        cursor: pointer;
+        font-family: inherit;
+      }
+
+      /* Selection Color */
+      ::selection {
+        background: var(--col-blue);
+        color: white;
+      }
+
+      /* --- Header --- */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 70px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 5%;
+        background: var(--bg-nav);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+        z-index: 1000;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+      }
+      .logo {
+        font-weight: 700;
+        font-size: 1.3rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+      .logo span {
+        color: var(--text-muted);
+        font-weight: 300;
+      }
+
+      .desktop-nav {
+        display: flex;
+        gap: 35px;
+      }
+      .desktop-nav a {
+        text-decoration: none;
+        color: var(--text-main);
+        font-weight: 500;
+        position: relative;
+        transition: var(--transition);
+        font-size: 0.95rem;
+        letter-spacing: 0.3px;
+      }
+      .desktop-nav a:hover {
+        color: var(--text-heading);
+      }
+      .desktop-nav a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -8px;
+        left: 0;
+        background: var(--col-blue);
+        transition: 0.3s;
+      }
+      .desktop-nav a:hover::after {
+        width: 100%;
+      }
+
+      .header-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .icon-btn {
+        width: 42px;
+        height: 42px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-heading);
+        text-decoration: none;
+        font-size: 1.05rem;
+        transition: var(--transition);
+        border: 1px solid var(--border-color);
+        background: rgba(45, 74, 83, 0.3);
+      }
+      .icon-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+      .btn-wa:hover {
+        background: var(--whatsapp);
+        border-color: var(--whatsapp);
+        color: white;
+      }
+      .btn-phone:hover {
+        background: var(--phone);
+        border-color: var(--phone);
+        color: white;
+      }
+      .btn-email:hover {
+        background: var(--email);
+        border-color: var(--email);
+        color: white;
+      }
+
+      .mobile-toggle {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--text-heading);
+        margin-right: 10px;
+      }
+
+      /* --- Hero Section --- */
+      .hero {
+        min-height: 100vh;
+        padding-top: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+        gap: 60px;
+      }
+      .hero-content {
+        flex: 1;
+        max-width: 600px;
+        z-index: 2;
+      }
+      .hero h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        line-height: 1.2;
+        margin-bottom: 20px;
+        font-weight: 700;
+        background: linear-gradient(
+          135deg,
+          var(--text-heading),
+          var(--col-blue)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .hero p {
+        font-size: 1.15rem;
+        margin-bottom: 35px;
+        color: var(--text-muted);
+        line-height: 1.8;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+      .btn-main {
+        padding: 14px 35px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        border: 2px solid var(--col-blue);
+        color: var(--text-heading);
+        background: transparent;
+        transition: var(--transition);
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
+      }
+      .btn-main:hover {
+        background: var(--col-blue);
+        color: var(--col-darkest);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(105, 129, 141, 0.3);
+      }
+
+      .hero-image {
+        flex: 1;
+        height: 65vh;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        border: 1px solid var(--border-color);
+        position: relative;
+      }
+      .hero-image::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(13, 31, 35, 0.4), transparent);
+        z-index: 1;
+      }
+      .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(30%) brightness(0.85);
+      }
+
+      /* --- Portfolio --- */
+      .portfolio-section {
+        padding: 100px 5%;
+        background: var(--bg-body);
+      }
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 60px;
+        font-weight: 700;
+        position: relative;
+        padding-bottom: 20px;
+      }
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--col-blue);
+        border-radius: 10px;
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .grid-item {
+        background: var(--bg-card);
+        border-radius: 12px;
+        overflow: hidden;
+        aspect-ratio: 4/3;
+        position: relative;
+        cursor: pointer;
+        /* שימוש בצבע המבוקש #69818D בבורדר */
+        border: 1px solid var(--col-blue);
+        transition: var(--transition);
+      }
+      .grid-item:hover {
+        transform: translateY(-8px);
+        border-color: var(--col-blue);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      }
+      .grid-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.7;
+        transition: 0.5s;
+        filter: grayscale(20%);
+      }
+      .grid-item:hover img {
+        opacity: 0.9;
+        transform: scale(1.08);
+        filter: grayscale(0%);
+      }
+
+      .project-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 25px;
+        background: linear-gradient(
+          to top,
+          rgba(13, 31, 35, 0.95),
+          transparent
+        );
+      }
+      .project-info h3 {
+        font-size: 1.3rem;
+        margin-bottom: 5px;
+      }
+      .project-info span {
+        font-size: 0.85rem;
+        color: var(--col-blue);
+        letter-spacing: 1px;
+      }
+
+      /* --- Footer --- */
+      footer {
+        text-align: center;
+        padding: 50px;
+        border-top: 1px solid var(--border-color);
+        font-size: 0.9rem;
+        margin-top: auto;
+        background: var(--bg-card);
+        color: var(--text-muted);
+      }
+
+      /* --- Mobile Menu --- */
+      .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--bg-card);
+        z-index: 1500;
+        padding: 80px 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        transition: 0.4s;
+        border-left: 1px solid var(--border-color);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+      }
+      .mobile-menu-overlay.active {
+        right: 0;
+      }
+      /* עיצוב מעודכן לתפריט המובייל לפי בקשה */
+      .mobile-menu-overlay a {
+        font-size: 1.2rem;
+        text-decoration: none;
+        color: var(--text-main);
+        /* שימוש בצבע #69818D בקו תחתון */
+        border-bottom: 1px solid var(--col-blue);
+        padding-bottom: 10px;
+        display: block; /* כדי שיתפוס רוחב מלא */
+        margin-bottom: 10px;
+      }
+      .close-menu-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: var(--text-heading);
+      }
+
+      /* --- Accessibility Widget --- */
+      .accessibility-widget {
+        position: fixed;
+        top: 15%;
+        right: 0;
+        z-index: 9999;
+      }
+      .acc-toggle {
+        padding: 10px;
+        background: var(--col-med);
+        color: white;
+        cursor: pointer;
+        font-size: 1.4rem;
+        border-radius: 10px 0 0 10px;
+      }
+      .acc-menu {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: var(--bg-card);
+        color: var(--text-main);
+        width: 240px;
+        padding: 40px 15px 15px 15px;
+        border-radius: 12px 0 12px 12px;
+        border: 1px solid var(--border-color);
+        flex-direction: column;
+        gap: 8px;
+        box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.3);
+      }
+      .acc-menu.active {
+        display: flex;
+      }
+      .acc-btn {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border-color);
+        padding: 10px;
+        color: var(--text-main);
+        font-size: 0.85rem;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .acc-btn:hover {
+        background: var(--hover-bg);
+      }
+      .acc-btn.tts-active-btn {
+        border-color: var(--text-heading);
+        background: var(--col-med);
+        color: white;
+      }
+      .acc-close-inside {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        color: var(--text-main);
+      }
+
+      /* --- Modals & Popups --- */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 2000;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(5px);
+      }
+      .modal-content {
+        background: var(--bg-card);
+        padding: 30px;
+        border-radius: 15px;
+        max-width: 600px;
+        width: 90%;
+        position: relative;
+        border: 1px solid var(--border-color);
+        text-align: center;
+        color: var(--text-main);
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      .close-modal {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--text-muted);
+      }
+
+      .cookie-popup {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--bg-card);
+        padding: 25px;
+        border-radius: 15px;
+        width: 320px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        border: 1px solid var(--border-color);
+        display: none;
+      }
+      .cookie-options {
+        display: none;
+        margin-top: 15px;
+        text-align: right;
+      }
+      .cookie-option {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        font-size: 0.9rem;
+      }
+
+      /* --- אנימציית הבהוב ירוק --- */
+      @keyframes pulse-green {
+          0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+          70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+      }
+
+      .floating-whatsapp {
+        position: fixed;
+        bottom: 25px;
+        left: 25px;
+        width: 60px;
+        height: 60px;
+        background: var(--whatsapp);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        z-index: 900;
+        text-decoration: none;
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        transition: var(--transition);
+        /* החלת האנימציה */
+        animation: pulse-green 2s infinite;
+      }
+      .floating-whatsapp:hover {
+        transform: scale(1.1);
+        box-shadow: 0 12px 35px rgba(37, 211, 102, 0.6);
+        animation: none; /* עצירת אנימציה במעבר עכבר */
+      }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+          justify-content: center;
+          padding-top: 100px;
+          gap: 40px;
         }
-
-        #site-wrapper { width: 100%; min-height: 100vh; display: flex; flex-direction: column; }
-        h1, h2, .logo { font-family: 'Rubik', sans-serif; }
-        h3, .btn-contact, nav a { font-family: 'Varela Round', sans-serif; }
-
-        /* --- אנימציית קישורים --- */
-        .animated-link {
-            position: relative; text-decoration: none; color: var(--text-main);
-            display: inline-block; font-size: 1rem; font-weight: 600; 
-            transition: color 0.3s ease;
+        .hero-image {
+          width: 100%;
+          margin: 0;
+          height: 45vh;
+          order: -1;
         }
-        .animated-link:hover { color: var(--hover-color) !important; }
+        .hero-content {
+          padding: 0;
+          width: 100%;
+        }
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+        .hero-buttons {
+          justify-content: center;
+        }
+        /* הסתרת כל האלמנטים בהדר למעט ההמבורגר */
+        .desktop-nav,
+        .desktop-actions {
+          display: none;
+        }
+        /* הסתרה ספציפית של כל הכפתורים באזור הפעולות בהדר (כולל החלפת ערכת נושא) */
+        .header-actions .icon-btn {
+            display: none;
+        }
         
-        .animated-link::after {
-            content: ''; position: absolute; width: 100%; height: 2px; bottom: -4px; left: 0; 
-            background: var(--accent);
-            transform: scaleX(0); 
-            transform-origin: right; 
-            transition: transform 0.3s ease, background 0.3s ease;
+        .mobile-toggle {
+          display: block;
         }
-        
-        .animated-link:hover::after { 
-            transform: scaleX(1); 
-            transform-origin: left; 
-            background: var(--hover-color); 
-        }
-
-        /* --- Header --- */
-        header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 1rem 5%; position: sticky; top: 0;
-            background: var(--nav-bg); backdrop-filter: blur(12px);
-            z-index: 100; border-bottom: 1px solid var(--border-color);
-            transition: background 0.3s;
-        }
-        .logo { font-weight: 900; font-size: 1.8rem; letter-spacing: -1px; }
-        .logo span { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .desktop-nav { display: flex; align-items: center; gap: 30px; }
-        .header-actions { display: flex; gap: 10px; align-items: center; }
-        
-        .icon-btn {
-            width: 40px; height: 40px; border-radius: 10px; display: flex;
-            align-items: center; justify-content: center; color: white;
-            text-decoration: none; font-size: 1.1rem; transition: var(--transition);
-            border: none; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .btn-wa { background: var(--whatsapp); }
-        .btn-phone { background: var(--phone); }
-        .btn-email { background: var(--email); }
-        .btn-theme { background: rgba(255,255,255,0.05); color: var(--text-main); border: 1px solid var(--border-color); }
-        .icon-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.2); }
-
-        .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); margin-right: 15px; }
-
-        /* --- Mobile Menu --- */
-        .mobile-menu-overlay {
-            position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
-            background: var(--bg-color); z-index: 200;
-            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-            transition: right 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-            display: flex; flex-direction: column; padding: 80px 30px; gap: 25px;
-            border-left: 1px solid var(--border-color);
-        }
-        .mobile-menu-overlay.active { right: 0; }
-        .mobile-menu-overlay a { font-size: 1.3rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; width: 100%; }
-        .close-menu-btn { position: absolute; top: 25px; left: 25px; background: none; border: none; font-size: 1.8rem; color: var(--text-main); cursor: pointer; }
-        .mobile-settings { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-color); }
-        .theme-switch-row { display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
-
-        /* --- Hero --- */
-        .hero { 
-            text-align: center; padding: 100px 20px; margin: 0 auto; flex: 1; 
-            position: relative; width: 100%; overflow: hidden;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background-color: var(--bg-color);
-        }
-        
-        .hero-video {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; z-index: 0; opacity: 0.3; 
-            filter: grayscale(40%) contrast(1.1);
-        }
-
-        .hero::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(11, 17, 32, 0.6); z-index: 1;
-        }
-
-        .hero-content { position: relative; z-index: 2; max-width: 800px; }
-        .hero h1 { font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.1; margin-bottom: 25px; font-weight: 900; }
-        .hero h1 span { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { color: var(--text-secondary); font-size: 1.2rem; margin-bottom: 40px; font-weight: 300; }
-
-        @media (max-width: 768px) {
-            .hero-video { display: none; }
-            .hero::before { display: none; }
-            .hero { background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1) 0%, transparent 70%); }
-            .desktop-nav { display: none; }
-            .mobile-toggle { display: block; }
-            .btn-theme-desktop { display: none; }
-        }
-
-        /* --- Portfolio Grid --- */
-        .portfolio-section { 
-            padding: 60px 5%; 
-            display: flex; flex-direction: column; align-items: center; 
-        }
-        .section-title { 
-            margin-bottom: 40px; font-size: 2.2rem; font-weight: 700; text-align: center;
-            display: inline-block;
-        }
-        .section-title::after {
-            content: ''; display: block; width: 60px; height: 4px; background: var(--gradient-text);
-            margin: 10px auto 0; border-radius: 2px;
-        }
-
         .grid-container {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px; width: 100%; max-width: 1200px;
+          grid-template-columns: 1fr;
+          gap: 20px;
         }
-        .grid-item {
-            background-color: var(--card-bg); border-radius: 20px; overflow: hidden;
-            position: relative; cursor: pointer; aspect-ratio: 4/3; 
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        header {
+          height: 65px;
         }
-        .grid-item:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); border-color: var(--accent); }
-        .grid-item.wide { grid-column: span 2; aspect-ratio: 2/1; }
-        .grid-item.tall { grid-row: span 2; aspect-ratio: 1/2; }
-        @media (max-width: 768px) { .grid-item.wide, .grid-item.tall { grid-column: span 1; grid-row: span 1; aspect-ratio: 4/3; } }
-        
-        .grid-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; opacity: 0.9; }
-        .grid-item:hover img { transform: scale(1.05); opacity: 1; }
-        .project-info {
-            position: absolute; bottom: 0; left: 0; right: 0; padding: 25px;
-            background: linear-gradient(to top, rgba(11, 17, 32, 0.95), transparent);
-            transform: translateY(20px); opacity: 0; transition: var(--transition);
+        .logo {
+          font-size: 1.1rem;
         }
-        .project-info h3 { color: #fff; font-size: 1.3rem; margin-bottom: 5px; }
-        .project-info span { color: var(--accent); font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; }
-        .grid-item:hover .project-info { transform: translateY(0); opacity: 1; }
-
-        footer { text-align: center; padding: 60px 20px; color: var(--text-secondary); border-top: 1px solid var(--border-color); margin-top: 60px; font-size: 0.9rem; }
-
-        /* --- Accessibility Widget --- */
-        .accessibility-widget { position: fixed; top: 15%; right: 0; z-index: 9999; }
-        
-        .acc-toggle {
-            padding: 10px; background: #2563eb; color: white; cursor: pointer;
-            font-size: 1.4rem; border-radius: 10px 0 0 10px; box-shadow: -4px 4px 15px rgba(0,0,0,0.2);
-        }
-        
-        .acc-menu {
-            display: none; position: absolute; right: 0; top: 0;
-            background: var(--card-bg); color: var(--text-main); 
-            width: 240px; 
-            padding: 40px 15px 15px 15px; 
-            border-radius: 12px 0 12px 12px;
-            box-shadow: -10px 10px 30px rgba(0,0,0,0.4);
-            flex-direction: column; gap: 8px; border: 1px solid var(--border-color);
-        }
-        .acc-menu.active { display: flex; }
-        
-        .acc-close-inside {
-            position: absolute; top: 8px; left: 10px;
-            background: transparent; border: none; font-size: 1.4rem;
-            color: var(--text-secondary); cursor: pointer; padding: 5px;
-        }
-        .acc-close-inside:hover { color: var(--email); }
-
-        .acc-btn {
-            background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); padding: 10px;
-            color: var(--text-main); font-size: 0.85rem; cursor: pointer; border-radius: 8px; 
-            display: flex; flex-direction: column; align-items: center; gap: 5px; transition: 0.2s;
-        }
-        .acc-btn:hover { background: rgba(255,255,255,0.1); }
-        .acc-reset { background: rgba(244, 63, 94, 0.1); border-color: rgba(244, 63, 94, 0.3); color: #f43f5e; font-weight: bold; margin-top: 5px; }
-        .acc-reset:hover { background: #f43f5e; color: white; }
-        .acc-btn.tts-active-btn { background: var(--accent); color: white; border-color: var(--accent); animation: pulse-border 1.5s infinite; }
-
-        /* --- Cookie Popup --- */
-        .cookie-popup {
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            background: var(--card-bg); padding: 25px; border-radius: 15px; width: 320px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3); z-index: 1000;
-            border: 1px solid var(--border-color); display: none;
-            animation: slideUp 0.5s ease;
-        }
-        .cookie-popup h4 { margin-bottom: 8px; color: var(--accent); font-family: 'Rubik'; }
-        .cookie-popup p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; }
-        .cookie-buttons { display: flex; flex-direction: column; gap: 8px; }
-        .btn-accept { background: var(--gradient-text); color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: 700; font-family: 'Rubik'; }
-        .btn-settings { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); padding: 10px; border-radius: 8px; cursor: pointer; }
-        .cookie-options { display: none; margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 10px; }
-        .cookie-option { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.85rem; }
-        .cookie-option input { accent-color: var(--accent); transform: scale(1.1); }
-
-        /* --- Modals --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); z-index: 2000;
-            display: none; justify-content: center; align-items: center;
-            backdrop-filter: blur(8px);
-        }
-        .modal-content {
-            background: var(--card-bg); padding: 40px; border-radius: 20px;
-            max-width: 600px; width: 90%; position: relative;
-            border: 1px solid var(--border-color); text-align: center; color: var(--text-main);
-            max-height: 90vh; overflow-y: auto;
-        }
-        .close-modal { 
-            position: absolute; top: 15px; left: 15px; background: none; border: none; 
-            color: var(--text-main); font-size: 1.8rem; cursor: pointer; z-index: 10;
-        }
-        .close-modal.disabled { opacity: 0.3; cursor: not-allowed; pointer-events: none; }
-        .btn-modal-action { 
-            display: inline-block; background: var(--gradient-text); color: white; 
-            padding: 12px 30px; border-radius: 50px; text-decoration: none; 
-            font-weight: 700; margin-top: 20px;
-        }
-        
-        /* תוכן מדיניות פרטיות מלא */
-        .privacy-agreement {
-            margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 15px;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-        }
-        .privacy-text-content { text-align: right; max-height: 250px; overflow-y: auto; margin-bottom: 10px; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 12px; font-size: 0.9rem; }
-
-        .floating-whatsapp {
-            display: none; position: fixed; bottom: 20px; left: 20px;
-            width: 60px; height: 60px; background: var(--whatsapp); color: white;
-            border-radius: 50%; font-size: 30px; z-index: 1002;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3); align-items: center; justify-content: center;
-            text-decoration: none; animation: pulse-green 2s infinite;
-        }
-        @media(max-width:768px){ .floating-whatsapp { display: flex; } }
-        
-        @keyframes slideUp { from { transform: translate(-50%, 50px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
-        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
-        @keyframes pulse-border { 0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(56, 189, 248, 0); } 100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); } }
-
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div id="site-wrapper">
-        <header>
-            <div class="logo">בני<span>.דניאל</span></div>
-            <div class="desktop-nav">
-                <a class="animated-link" href="#work">עבודות</a>
-                <a class="animated-link" onclick="openModal('aboutModal')">אודות</a>
-            </div>
-            <div class="header-actions">
-                <button class="icon-btn btn-theme btn-theme-desktop" onclick="toggleTheme()" title="מצב יום/לילה"><i class="fas fa-adjust"></i></button>
-                <a href="mailto:email@example.com" class="icon-btn btn-email" title="שלח מייל"><i class="fas fa-envelope"></i></a>
-                <a href="https://wa.me/972537261618" target="_blank" class="icon-btn btn-wa"><i class="fab fa-whatsapp"></i></a>
-                <a href="tel:0537261618" class="icon-btn btn-phone"><i class="fas fa-phone"></i></a>
-                <div class="mobile-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></div>
-            </div>
-        </header>
+      <header>
+        <div class="logo">BENNY <span>DANIEL</span></div>
 
-        <div class="mobile-menu-overlay" id="mobileMenu">
-            <button class="close-menu-btn" onclick="toggleMobileMenu()">&times;</button>
-            <a href="#work" class="animated-link" onclick="toggleMobileMenu()">עבודות</a>
-            <a class="animated-link" onclick="openModal('aboutModal'); toggleMobileMenu()">אודות</a>
-            <a href="https://wa.me/972537261618" class="animated-link">וואטסאפ</a>
-            <a href="mailto:email@example.com" class="animated-link">שלח מייל</a>
-            <a class="animated-link" onclick="openModal('privacyModal'); toggleMobileMenu()">מדיניות פרטיות</a>
-            <div class="mobile-settings">
-                <h4>הגדרות</h4>
-                <div class="theme-switch-row">
-                    <span>מצב תצוגה</span>
-                    <button class="icon-btn btn-theme" onclick="toggleTheme()"><i class="fas fa-adjust"></i></button>
-                </div>
-            </div>
+        <nav class="desktop-nav">
+          <a href="#work">עבודות</a>
+          <a href="#" onclick="openModal('aboutModal')">אודות</a>
+          <a href="#" onclick="openModal('privacyModal')">פרטיות</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="icon-btn" onclick="toggleTheme()" title="מצב יום/לילה">
+            <i class="fas fa-adjust"></i>
+          </button>
+
+          <div class="desktop-actions" style="display: flex; gap: 10px">
+            <a href="mailto:email@example.com" class="icon-btn btn-email"
+              ><i class="fas fa-envelope"></i
+            ></a>
+            <a
+              href="https://wa.me/972537261618"
+              target="_blank"
+              class="icon-btn btn-wa"
+              ><i class="fab fa-whatsapp"></i
+            ></a>
+            <a href="tel:0537261618" class="icon-btn btn-phone"
+              ><i class="fas fa-phone"></i
+            ></a>
+          </div>
+
+          <div class="mobile-toggle" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+          </div>
         </div>
+      </header>
 
-        <a href="https://wa.me/972537261618" class="floating-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <div class="mobile-menu-overlay" id="mobileMenu">
+        <button class="close-menu-btn" onclick="toggleMobileMenu()">
+          &times;
+        </button>
+        <a href="#work" onclick="toggleMobileMenu()">עבודות</a>
+        <a href="#" onclick="openModal('aboutModal'); toggleMobileMenu()"
+          >אודות</a
+        >
+        <a href="#" onclick="openModal('privacyModal'); toggleMobileMenu()"
+          >מדיניות פרטיות</a
+        >
+        <hr
+          style="
+            border: 0;
+            border-top: 1px solid var(--col-blue); 
+            width: 100%;
+            margin: 10px 0;
+          "
+        />
+        <a href="mailto:email@example.com">שלח מייל</a>
+        <a href="https://wa.me/972537261618">וואטסאפ</a>
+        <a href="tel:0537261618">התקשר</a>
+      </div>
 
-        <main>
-            <section class="hero">
-                <video autoplay muted loop playsinline class="hero-video" poster="https://images.pexels.com/videos/853789/free-video-853789.jpg">
-                    <source src="https://videos.pexels.com/video-files/853789/853789-hd_1920_1080_25fps.mp4" type="video/mp4">
-                </video>
-                <div class="hero-content">
-                    <h1>עיצוב חכם <br> <span>לעסקים שרוצים לגדול</span></h1>
-                    <p>בני דניאל - בניית אתרים, מיתוג וחוויות משתמש שמשאירות רושם.</p>
-                </div>
-            </section>
-
-            <section id="work" class="portfolio-section">
-                <h2 class="section-title">פרויקטים נבחרים</h2>
-                <div class="grid-container">
-                    <article class="grid-item wide">
-                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1200&q=80" alt="Work 1">
-                        <div class="project-info"><h3>חנות אונליין</h3><span>ECOMMERCE</span></div>
-                    </article>
-                    <article class="grid-item">
-                        <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&w=800&q=80" alt="Work 2">
-                        <div class="project-info"><h3>מיתוג</h3><span>BRANDING</span></div>
-                    </article>
-                    <article class="grid-item tall">
-                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80" alt="Work 3">
-                        <div class="project-info"><h3>אפליקציה</h3><span>MOBILE UI</span></div>
-                    </article>
-                     <article class="grid-item">
-                        <img src="https://images.unsplash.com/photo-1555421689-d68471e189f2?auto=format&fit=crop&w=800&q=80" alt="Work 4">
-                        <div class="project-info"><h3>אתר תדמית</h3><span>WEB DESIGN</span></div>
-                    </article>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <p>© 2024 בני דניאל - כל הזכויות שמורות. <br> <a class="animated-link" onclick="openModal('privacyModal')">מדיניות פרטיות</a></p>
-        </footer>
-
-        <div class="cookie-popup" id="cookiePopup">
-            <h4>🍪 ניהול פרטיות</h4>
-            <p>האתר משתמש בעוגיות כדי לשפר את החוויה שלך.</p>
-            <div class="cookie-buttons" id="cookieMainBtns">
-                <button class="btn-accept" onclick="acceptAllCookies()">אני מסכים להכל</button>
-                <button class="btn-settings" onclick="toggleCookieSettings()">הגדרות מתקדמות</button>
+      <main>
+        <section class="hero">
+          <div class="hero-content">
+            <h1>בני דניאל<br />עיצוב גרפי ופיתוח דיגיטלי</h1>
+            <p>
+              מעצב חוויות דיגיטליות ייחודיות. מתמחה בבניית אתרים, מיתוג ועיצוב
+              ממשק משתמש שמביא תוצאות מדידות.
+            </p>
+            <div class="hero-buttons">
+              <button
+                class="btn-main"
+                onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})"
+              >
+                תיק עבודות
+              </button>
+              <button class="btn-main" onclick="openModal('aboutModal')">
+                אודות
+              </button>
             </div>
-            <div class="cookie-options" id="cookieOptions">
-                <div class="cookie-option"><span>עוגיות הכרחיות</span><input type="checkbox" checked disabled></div>
-                <div class="cookie-option"><span>סטטיסטיקה</span><input type="checkbox" id="cookieAnalytics"></div>
-                <div class="cookie-option"><span>שיווק</span><input type="checkbox" id="cookieMarketing"></div>
-                <button class="btn-accept" style="margin-top:10px" onclick="saveCookiePreferences()">שמור בחירה</button>
-            </div>
+          </div>
+          <div class="hero-image">
+            <img
+              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2072&q=80"
+              alt="Workspace"
+            />
+          </div>
+        </section>
+
+        <section id="work" class="portfolio-section">
+          <h2 class="section-title">פרויקטים נבחרים</h2>
+          <div class="grid-container">
+            <article class="grid-item">
+              <img
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80"
+                alt="Dashboard Design"
+              />
+              <div class="project-info">
+                <h3>ממשק ניהול מתקדם</h3>
+                <span>UI/UX DESIGN</span>
+              </div>
+            </article>
+            <article class="grid-item">
+              <img
+                src="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=80"
+                alt="Branding"
+              />
+              <div class="project-info">
+                <h3>זהות ומיתוג עסקי</h3>
+                <span>BRANDING</span>
+              </div>
+            </article>
+            <article class="grid-item">
+              <img
+                src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80"
+                alt="Mobile App"
+              />
+              <div class="project-info">
+                <h3>אפליקציית מובייל</h3>
+                <span>MOBILE UI</span>
+              </div>
+            </article>
+            <article class="grid-item">
+              <img
+                src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1200&q=80"
+                alt="Web Design"
+              />
+              <div class="project-info">
+                <h3>אתר תדמית</h3>
+                <span>WEB DESIGN</span>
+              </div>
+            </article>
+            <article class="grid-item">
+              <img
+                src="https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&w=1200&q=80"
+                alt="E-commerce"
+              />
+              <div class="project-info">
+                <h3>חנות אונליין</h3>
+                <span>ECOMMERCE</span>
+              </div>
+            </article>
+            <article class="grid-item">
+              <img
+                src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?auto=format&fit=crop&w=1200&q=80"
+                alt="Creative"
+              />
+              <div class="project-info">
+                <h3>קמפיין דיגיטלי</h3>
+                <span>DIGITAL MARKETING</span>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <p>© 2024 בני דניאל. כל הזכויות שמורות.</p>
+      </footer>
+
+      <a
+        href="https://wa.me/972537261618"
+        class="floating-whatsapp"
+        target="_blank"
+        ><i class="fab fa-whatsapp"></i
+      ></a>
+
+      <div class="accessibility-widget">
+        <div class="acc-toggle" onclick="toggleAccessMenu()">
+          <i class="fas fa-wheelchair"></i>
         </div>
-
-        <div class="modal-overlay" id="privacyModal">
-            <div class="modal-content">
-                <button class="close-modal disabled" id="privacyCloseBtn" onclick="closeModals()" title="יש לאשר את התנאים">&times;</button>
-                <h2>מדיניות פרטיות</h2>
-                <div class="privacy-text-content">
-                    <p><strong>1. כללי</strong><br>
-                    ברוכים הבאים לאתר של בני דניאל. השימוש באתר כפוף לתנאים המפורטים להלן. הגלישה באתר מעידה על הסכמתך לתנאים אלו.</p>
-                    <br>
-                    <p><strong>2. איסוף מידע</strong><br>
-                    אנו אוספים מידע אנונימי לצורכי סטטיסטיקה ושיפור חווית המשתמש (כגון סוג הדפדפן, זמן שהייה באתר). במידה ותשאיר פרטים ליצירת קשר, נעשה בהם שימוש אך ורק למטרה זו.</p>
-                    <br>
-                    <p><strong>3. עוגיות (Cookies)</strong><br>
-                    האתר משתמש ב"עוגיות" לצורך תפעולו השוטף, כולל איסוף נתונים סטטיסטיים ואבטחת מידע. ניתן לשנות את הגדרות הדפדפן ולחסום עוגיות בכל עת.</p>
-                    <br>
-                    <p><strong>4. קניין רוחני</strong><br>
-                    כל התכנים באתר זה, לרבות עיצובים, תמונות וקוד, הם קניינו הבלעדי של בני דניאל ואין לעשות בהם שימוש ללא אישור בכתב.</p>
-                </div>
-                <div class="privacy-agreement">
-                    <input type="checkbox" id="privacyCheckbox" onchange="togglePrivacyClose()">
-                    <label for="privacyCheckbox">קראתי והסכמתי לתנאי השימוש</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal-overlay" id="aboutModal">
-            <div class="modal-content">
-                <button class="close-modal" onclick="closeModals()">&times;</button>
-                <h2>נעים להכיר, בני דניאל 👋</h2>
-                <p style="text-align: right; margin-bottom: 20px;">
-                    אני בני דניאל, מעצב ומפתח אתרים עם תשוקה לדיגיטל וחדשנות.
-                    <br><br>
-                    המסע שלי בעולם העיצוב התחיל ב-2023, ומאז אני מלווה עסקים קטנים וגדולים ביצירת נוכחות דיגיטלית מרשימה. אני מאמין שאתר טוב הוא לא רק "פנים יפות", אלא כלי עבודה שמייצר תוצאות.
-                    <br><br>
-                    אני מתמחה בבניית אתרים מותאמים אישית (Custom Code), שיפור חווית משתמש (UX/UI) והנגשת אתרים לכלל האוכלוסייה. אם אתם מחפשים שותף לדרך הדיגיטלית שלכם - אני כאן.
-                </p>
-                <a href="https://wa.me/972537261618" class="btn-modal-action">בוא נדבר: 053-7261618</a>
-            </div>
-        </div>
-
-        <div class="modal-overlay" id="accessStatementModal">
-            <div class="modal-content">
-                <button class="close-modal" onclick="closeModals()">&times;</button>
-                <h2>הצהרת נגישות</h2>
-                <div style="text-align: right; overflow-y: auto; max-height: 400px; padding: 10px;">
-                    <p><strong>כללי</strong></p>
-                    <p>אני, בני דניאל, רואה חשיבות רבה במתן שירות שוויוני לכלל הגולשים ובשיפור חווית הגלישה לאנשים עם מוגבלות. הושקעו משאבים רבים כדי להנגיש את האתר ולהקל על השימוש בו.</p>
-                    <br>
-                    <p><strong>רמת הנגישות</strong></p>
-                    <p>האתר עומד בדרישות תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), תשע"ג-2013, ומותאם לדרישות תקן ת"י 5568 ברמה AA.</p>
-                    <br>
-                    <p><strong>התאמות שבוצעו</strong></p>
-                    <ul style="padding-right: 20px; margin-bottom: 10px;">
-                        <li>אפשרות להגדלת טקסט</li>
-                        <li>שינוי ניגודיות (קונטרסט)</li>
-                        <li>הפסקת הבהובים/אנימציות</li>
-                        <li>תמיכה בהקראת מסך</li>
-                        <li>ניווט מקלדת מלא</li>
-                    </ul>
-                    <br>
-                    <p><strong>תאימות דפדפנים</strong></p>
-                    <p>האתר נבדק ונמצא תואם לדפדפנים הנפוצים: Chrome, Firefox, Edge, Safari.</p>
-                    <br>
-                    <p><strong>יצירת קשר בנושא נגישות</strong></p>
-                    <p>אם נתקלתם בקושי בגלישה או יש לכם הערות בנושא, אנא צרו קשר:<br>
-                    טלפון: 053-7261618<br>
-                    מייל: email@example.com</p>
-                </div>
-            </div>
-        </div>
-
-    </div> 
-
-    <div class="accessibility-widget">
-        <div class="acc-toggle" onclick="toggleAccessMenu()"><i class="fas fa-wheelchair"></i></div>
         <div class="acc-menu" id="accMenu">
-            <button class="acc-close-inside" onclick="closeAccessMenu()">&times;</button>
-            <h3 style="margin-top:20px; text-align:center; font-size:1.1rem;">כלי נגישות</h3>
-            
-            <button class="acc-btn" id="ttsBtn" onclick="toggleTtsMode()" style="border-color: var(--accent);">
-                <i class="fas fa-volume-up" style="color:var(--accent)"></i> סמן להקראה
-            </button>
-            <button class="acc-btn" onclick="toggleHtmlClass('large-text-mode')"><i class="fas fa-text-height"></i> הגדל טקסט</button>
-            <button class="acc-btn" onclick="document.body.classList.toggle('high-contrast-mode')"><i class="fas fa-adjust"></i> ניגודיות</button>
-            <button class="acc-btn" onclick="toggleGrayscale()"><i class="fas fa-eye-slash"></i> גווני אפור</button>
-            <button class="acc-btn" onclick="document.body.classList.toggle('readable-font-mode')"><i class="fas fa-font"></i> פונט קריא</button>
-            
-            <button class="acc-btn acc-reset" onclick="resetAccess()"><i class="fas fa-undo"></i> איפוס הגדרות</button>
+          <button class="acc-close-inside" onclick="closeAccessMenu()">
+            &times;
+          </button>
+          <h3 style="margin-bottom: 10px; text-align: center">נגישות</h3>
 
-            <div style="text-align:center; margin-top:10px;">
-                <a onclick="openAccessStatement()" style="color:var(--accent); cursor:pointer;">הצהרת נגישות</a>
-            </div>
+          <button class="acc-btn" id="ttsBtn" onclick="toggleTtsMode()">
+            <i class="fas fa-volume-up"></i> סמן להקראה
+          </button>
+          <button
+            class="acc-btn"
+            onclick="document.documentElement.classList.toggle('large-text-mode')"
+          >
+            <i class="fas fa-text-height"></i> הגדל טקסט
+          </button>
+          <button
+            class="acc-btn"
+            onclick="document.body.classList.toggle('high-contrast-mode')"
+          >
+            <i class="fas fa-adjust"></i> ניגודיות
+          </button>
+          <button
+            class="acc-btn"
+            onclick="document.getElementById('site-wrapper').classList.toggle('grayscale-active')"
+          >
+            <i class="fas fa-eye-slash"></i> גווני אפור
+          </button>
+          <button
+            class="acc-btn"
+            onclick="document.body.classList.toggle('readable-font-mode')"
+          >
+            <i class="fas fa-font"></i> פונט קריא
+          </button>
+          <button
+            class="acc-btn"
+            onclick="resetAccess()"
+            style="color: var(--email)"
+          >
+            <i class="fas fa-undo"></i> איפוס
+          </button>
+          <div style="text-align: center; margin-top: 5px">
+            <a
+              onclick="closeAccessMenu(); openModal('accessStatementModal')"
+              style="
+                cursor: pointer;
+                font-size: 0.8rem;
+                text-decoration: underline;
+              "
+              >הצהרת נגישות</a
+            >
+          </div>
         </div>
+      </div>
+
+      <div class="cookie-popup" id="cookiePopup">
+        <h4>🍪 הגדרות פרטיות</h4>
+        <p>אנו משתמשים בעוגיות לשיפור החווייה.</p>
+        <div
+          id="cookieMainBtns"
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top: 10px;
+          "
+        >
+          <button
+            class="btn-main"
+            style="
+              background: var(--text-main);
+              color: var(--bg-body);
+              border: none;
+            "
+            onclick="acceptAllCookies()"
+          >
+            אני מסכים להכל
+          </button>
+          <button
+            class="btn-main"
+            style="font-size: 0.9rem"
+            onclick="document.getElementById('cookieMainBtns').style.display='none'; document.getElementById('cookieOptions').style.display='block'"
+          >
+            הגדרות
+          </button>
+        </div>
+        <div class="cookie-options" id="cookieOptions">
+          <div class="cookie-option">
+            <span>הכרחיות</span><input type="checkbox" checked disabled />
+          </div>
+          <div class="cookie-option">
+            <span>סטטיסטיקה</span><input type="checkbox" id="cookieAnalytics" />
+          </div>
+          <div class="cookie-option">
+            <span>שיווק</span><input type="checkbox" id="cookieMarketing" />
+          </div>
+          <button
+            class="btn-main"
+            style="
+              width: 100%;
+              margin-top: 10px;
+              background: var(--text-main);
+              color: var(--bg-body);
+            "
+            onclick="saveCookiePreferences()"
+          >
+            שמור בחירה
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-overlay" id="privacyModal">
+        <div class="modal-content">
+          <button
+            class="close-modal disabled"
+            id="privacyCloseBtn"
+            onclick="closeModals()"
+          >
+            &times;
+          </button>
+          <h2>מדיניות פרטיות</h2>
+          <div
+            style="
+              text-align: right;
+              max-height: 250px;
+              overflow-y: auto;
+              background: rgba(0, 0, 0, 0.1);
+              padding: 10px;
+              border-radius: 10px;
+            "
+          >
+            <p><strong>1. כללי</strong><br>
+            ברוכים הבאים לאתר של בני דניאל. השימוש באתר כפוף לתנאים המפורטים להלן. הגלישה באתר מעידה על הסכמתך לתנאים אלו.</p>
+            <br>
+            <p><strong>2. איסוף מידע</strong><br>
+            אנו אוספים מידע אנונימי לצורכי סטטיסטיקה ושיפור חווית המשתמש (כגון סוג הדפדפן, זמן שהייה באתר). במידה ותשאיר פרטים ליצירת קשר, נעשה בהם שימוש אך ורק למטרה זו.</p>
+            <br>
+            <p><strong>3. עוגיות (Cookies)</strong><br>
+            האתר משתמש ב"עוגיות" לצורך תפעולו השוטף, כולל איסוף נתונים סטטיסטיים ואבטחת מידע. ניתן לשנות את הגדרות הדפדפן ולחסום עוגיות בכל עת.</p>
+            <br>
+            <p><strong>4. קניין רוחני</strong><br>
+            כל התכנים באתר זה, לרבות עיצובים, תמונות וקוד, הם קניינו הבלעדי של בני דניאל ואין לעשות בהם שימוש ללא אישור בכתב.</p>
+          </div>
+          <div
+            style="
+              margin-top: 20px;
+              display: flex;
+              gap: 10px;
+              justify-content: center;
+            "
+          >
+            <input
+              type="checkbox"
+              id="privacyCheckbox"
+              onchange="document.getElementById('privacyCloseBtn').classList.toggle('disabled', !this.checked)"
+            />
+            <label for="privacyCheckbox">קראתי והסכמתי</label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-overlay" id="aboutModal">
+        <div class="modal-content">
+          <button class="close-modal" onclick="closeModals()">&times;</button>
+          <h2>בני דניאל - מעצב גרפי ומפתח</h2>
+          <p style="text-align: right; margin-bottom: 20px; line-height: 1.8">
+            שלום! אני בני דניאל, מעצב ומפתח דיגיטלי עם התמחות בעיצוב חוויות
+            משתמש, בניית אתרים ומיתוג עסקי.
+            <br /><br />
+            המסע שלי בעולם העיצוב הדיגיטלי התחיל מתוך אהבה לדיזיין ופיתוח
+            טכנולוגי. אני מאמין שעיצוב טוב הוא לא רק "יפה לעין", אלא כלי אסטרטגי
+            שמניע תוצאות עסקיות ממשיות.
+            <br /><br />
+            בתיק העבודות שלי תמצאו פרויקטים מגוונים - מאתרי תדמית דינמיים, דרך
+            חנויות אונליין מתקדמות, ועד אפליקציות מובייל עם חוויית משתמש מושלמת.
+            <br /><br />
+            <strong>התמחויות:</strong> UI/UX Design, Web Development, Branding,
+            Mobile Design
+          </p>
+        </div>
+      </div>
+
+      <div class="modal-overlay" id="accessStatementModal">
+        <div class="modal-content">
+          <button class="close-modal" onclick="closeModals()">&times;</button>
+          <h2>הצהרת נגישות</h2>
+          <div style="text-align: right">
+            <p>האתר הוגש לפי תקן ת"י 5568 ברמה AA.</p>
+            <p>תמיכה בקורא מסך, ניווט מקלדת, והגדלת טקסט.</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
-        function toggleTheme() { document.body.classList.toggle('light-mode'); }
-        function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
-        function openModal(modalId) { document.getElementById(modalId).style.display = 'flex'; }
-        function closeModals() { document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none'); }
-        
-        // סגירת הצהרת נגישות
-        function openAccessStatement() {
-            closeAccessMenu();
-            openModal('accessStatementModal');
-        }
+      // --- Theme Logic ---
+      function toggleTheme() {
+        document.body.classList.toggle("light-mode");
+      }
 
-        window.onclick = function(e) { 
-            if (e.target.classList.contains('modal-overlay')) {
-                if (e.target.id === 'privacyModal') {
-                    if(document.getElementById('privacyCheckbox').checked) closeModals();
-                } else {
-                    closeModals();
-                }
-            }
-        }
-        
-        // --- Accessibility Logic ---
-        const accMenu = document.getElementById('accMenu');
-        
-        function toggleAccessMenu() { accMenu.classList.toggle('active'); }
-        function closeAccessMenu() { accMenu.classList.remove('active'); }
+      // --- Mobile Menu ---
+      function toggleMobileMenu() {
+        document.getElementById("mobileMenu").classList.toggle("active");
+      }
 
-        // סגירה בלחיצה מחוץ לתפריט
-        document.addEventListener('click', function(event) {
-            const widget = document.querySelector('.accessibility-widget');
-            const isClickInside = widget.contains(event.target);
-            if (!isClickInside && accMenu.classList.contains('active')) {
-                closeAccessMenu();
-            }
-        });
+      // --- Modals ---
+      function openModal(id) {
+        document.getElementById(id).style.display = "flex";
+      }
+      function closeModals() {
+        document
+          .querySelectorAll(".modal-overlay")
+          .forEach((m) => (m.style.display = "none"));
+      }
+      window.onclick = function (e) {
+        if (e.target.classList.contains("modal-overlay")) {
+          if (
+            e.target.id === "privacyModal" &&
+            !document.getElementById("privacyCheckbox").checked
+          )
+            return;
+          closeModals();
+        }
+      };
 
-        function toggleHtmlClass(className) { document.documentElement.classList.toggle(className); }
-        function toggleGrayscale() { document.getElementById('site-wrapper').classList.toggle('grayscale-active'); }
-        
-        function resetAccess() {
-            document.documentElement.classList.remove('large-text-mode');
-            document.body.classList.remove('high-contrast-mode', 'readable-font-mode', 'tts-active');
-            document.getElementById('site-wrapper').classList.remove('grayscale-active');
-            isTtsMode = false;
-            document.getElementById('ttsBtn').classList.remove('tts-active-btn');
-            window.speechSynthesis.cancel();
-        }
+      // --- Accessibility Logic ---
+      const accMenu = document.getElementById("accMenu");
+      function toggleAccessMenu() {
+        accMenu.classList.toggle("active");
+      }
+      function closeAccessMenu() {
+        accMenu.classList.remove("active");
+      }
 
-        // --- לוגיקת הקראה (TTS) משופרת ---
-        let isTtsMode = false;
-        
-        function toggleTtsMode() {
-            isTtsMode = !isTtsMode;
-            document.body.classList.toggle('tts-active');
-            document.getElementById('ttsBtn').classList.toggle('tts-active-btn');
-            if(!isTtsMode) window.speechSynthesis.cancel();
+      let isTtsMode = false;
+      function toggleTtsMode() {
+        isTtsMode = !isTtsMode;
+        document.body.classList.toggle("tts-active");
+        document.getElementById("ttsBtn").classList.toggle("tts-active-btn");
+        if (!isTtsMode) window.speechSynthesis.cancel();
+      }
+      document.addEventListener("mouseup", function () {
+        if (!isTtsMode) return;
+        const text = window.getSelection().toString();
+        if (text.length > 0) {
+          window.speechSynthesis.cancel();
+          const u = new SpeechSynthesisUtterance(text);
+          u.lang = "he-IL";
+          window.speechSynthesis.speak(u);
         }
+      });
+      function resetAccess() {
+        document.documentElement.classList.remove("large-text-mode");
+        document.body.classList.remove(
+          "high-contrast-mode",
+          "readable-font-mode",
+          "tts-active"
+        );
+        document
+          .getElementById("site-wrapper")
+          .classList.remove("grayscale-active");
+        isTtsMode = false;
+        window.speechSynthesis.cancel();
+      }
 
-        document.addEventListener('mouseup', function() {
-            if (!isTtsMode) return;
-            const text = window.getSelection().toString();
-            if (text.length > 0) {
-                window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'he-IL';
-                utterance.rate = 1;
-                window.speechSynthesis.speak(utterance);
-            }
-        });
-
-        // --- Privacy & Cookie ---
-        function togglePrivacyClose() {
-            const checkbox = document.getElementById('privacyCheckbox');
-            const closeBtn = document.getElementById('privacyCloseBtn');
-            if (checkbox.checked) closeBtn.classList.remove('disabled');
-            else closeBtn.classList.add('disabled');
-        }
-
-        function checkCookies() {
-            if(!localStorage.getItem('portfolio_cookie_consent')) {
-                setTimeout(() => document.getElementById('cookiePopup').style.display = 'block', 1000);
-            }
-        }
-        function toggleCookieSettings() {
-            document.getElementById('cookieMainBtns').style.display = 'none';
-            document.getElementById('cookieOptions').style.display = 'block';
-        }
-        function acceptAllCookies() {
-            localStorage.setItem('portfolio_cookie_consent', JSON.stringify({analytics: true, marketing: true}));
-            document.getElementById('cookiePopup').style.display = 'none';
-        }
-        function saveCookiePreferences() {
-            const analytics = document.getElementById('cookieAnalytics').checked;
-            const marketing = document.getElementById('cookieMarketing').checked;
-            localStorage.setItem('portfolio_cookie_consent', JSON.stringify({analytics, marketing}));
-            document.getElementById('cookiePopup').style.display = 'none';
-        }
-        checkCookies();
+      // --- Cookies ---
+      if (!localStorage.getItem("cookie_consent"))
+        setTimeout(
+          () =>
+            (document.getElementById("cookiePopup").style.display = "block"),
+          1000
+        );
+      function acceptAllCookies() {
+        localStorage.setItem(
+          "cookie_consent",
+          JSON.stringify({ analytics: true, marketing: true })
+        );
+        document.getElementById("cookiePopup").style.display = "none";
+      }
+      function saveCookiePreferences() {
+        localStorage.setItem(
+          "cookie_consent",
+          JSON.stringify({
+            analytics: document.getElementById("cookieAnalytics").checked,
+            marketing: document.getElementById("cookieMarketing").checked,
+          })
+        );
+        document.getElementById("cookiePopup").style.display = "none";
+      }
     </script>
-</body>
+  </body>
 </html>
