@@ -18,11 +18,11 @@
 
     <style>
       :root {
-        /* --- פלטת צבעים מהתמונה color.png --- */
+        /* --- פלטת צבעים --- */
         --col-darkest: #0d1f23;
         --col-dark: #132e35;
         --col-med: #2d4a53;
-        --col-blue: #69818d; /* זה הצבע שביקשת להשתמש בו */
+        --col-blue: #69818d;
         --col-light: #afb3b7;
         --col-grey: #5a636a;
 
@@ -43,6 +43,8 @@
         --whatsapp: #25d366;
         --phone: #0ea5e9;
         --email: #f43f5e;
+        --facebook: #1877f2;
+        --instagram: #e4405f;
 
         --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
@@ -113,10 +115,7 @@
         scroll-behavior: smooth;
       }
 
-      h1,
-      h2,
-      h3,
-      .logo {
+      h1, h2, h3, h4, .logo {
         font-family: "Rubik", "Montserrat", sans-serif;
         color: var(--text-heading);
       }
@@ -159,11 +158,13 @@
         font-weight: 300;
       }
 
+      /* --- Desktop Nav & Shared Link Animation --- */
       .desktop-nav {
         display: flex;
         gap: 35px;
       }
-      .desktop-nav a {
+      
+      .animated-link {
         text-decoration: none;
         color: var(--text-main);
         font-weight: 500;
@@ -171,21 +172,22 @@
         transition: var(--transition);
         font-size: 0.95rem;
         letter-spacing: 0.3px;
+        display: inline-block;
       }
-      .desktop-nav a:hover {
+      .animated-link:hover {
         color: var(--text-heading);
       }
-      .desktop-nav a::after {
+      .animated-link::after {
         content: "";
         position: absolute;
         width: 0;
         height: 2px;
-        bottom: -8px;
+        bottom: -4px;
         left: 0;
         background: var(--col-blue);
         transition: 0.3s;
       }
-      .desktop-nav a:hover::after {
+      .animated-link:hover::after {
         width: 100%;
       }
 
@@ -213,21 +215,9 @@
         transform: translateY(-3px);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       }
-      .btn-wa:hover {
-        background: var(--whatsapp);
-        border-color: var(--whatsapp);
-        color: white;
-      }
-      .btn-phone:hover {
-        background: var(--phone);
-        border-color: var(--phone);
-        color: white;
-      }
-      .btn-email:hover {
-        background: var(--email);
-        border-color: var(--email);
-        color: white;
-      }
+      .btn-wa:hover { background: var(--whatsapp); border-color: var(--whatsapp); color: white; }
+      .btn-phone:hover { background: var(--phone); border-color: var(--phone); color: white; }
+      .btn-email:hover { background: var(--email); border-color: var(--email); color: white; }
 
       .mobile-toggle {
         display: none;
@@ -364,7 +354,6 @@
         aspect-ratio: 4/3;
         position: relative;
         cursor: pointer;
-        /* שימוש בצבע המבוקש #69818D בבורדר */
         border: 1px solid var(--col-blue);
         transition: var(--transition);
       }
@@ -412,13 +401,49 @@
       /* --- Footer --- */
       footer {
         text-align: center;
-        padding: 50px;
+        padding: 60px 20px;
         border-top: 1px solid var(--border-color);
         font-size: 0.9rem;
         margin-top: auto;
         background: var(--bg-card);
         color: var(--text-muted);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
       }
+      
+      .footer-links {
+          display: flex;
+          gap: 20px;
+          flex-wrap: wrap;
+          justify-content: center;
+          margin-bottom: 10px;
+      }
+      .footer-sep {
+          color: var(--col-grey);
+      }
+
+      .footer-socials {
+          display: flex;
+          gap: 15px;
+      }
+      .footer-social-icon {
+          width: 35px;
+          height: 35px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          border: 1px solid var(--border-color);
+          color: var(--text-heading);
+          text-decoration: none;
+          transition: var(--transition);
+      }
+      .footer-social-icon:hover { transform: translateY(-3px); }
+      .footer-social-icon.fb:hover { background: var(--facebook); border-color: var(--facebook); color: white; }
+      .footer-social-icon.ig:hover { background: var(--instagram); border-color: var(--instagram); color: white; }
+
 
       /* --- Mobile Menu --- */
       .mobile-menu-overlay {
@@ -432,7 +457,7 @@
         padding: 80px 30px;
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
         transition: 0.4s;
         border-left: 1px solid var(--border-color);
         box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
@@ -440,17 +465,78 @@
       .mobile-menu-overlay.active {
         right: 0;
       }
-      /* עיצוב מעודכן לתפריט המובייל לפי בקשה */
+      
       .mobile-menu-overlay a {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         text-decoration: none;
         color: var(--text-main);
-        /* שימוש בצבע #69818D בקו תחתון */
-        border-bottom: 1px solid var(--col-blue);
-        padding-bottom: 10px;
-        display: block; /* כדי שיתפוס רוחב מלא */
-        margin-bottom: 10px;
+        border: none;
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: 0.3s;
       }
+      .mobile-menu-overlay a:hover {
+        color: var(--col-blue);
+        transform: translateX(-5px);
+      }
+      
+      .mobile-settings-area {
+          margin-top: 20px;
+          padding-top: 20px;
+          border-top: 1px solid rgba(105, 129, 141, 0.2);
+      }
+      .mobile-settings-area h4 {
+          margin-bottom: 15px;
+          font-size: 0.9rem;
+          color: var(--col-blue);
+          text-transform: uppercase;
+          letter-spacing: 1px;
+      }
+      .theme-toggle-btn {
+          background: rgba(255,255,255,0.05);
+          border: 1px solid var(--border-color);
+          color: var(--text-main);
+          padding: 10px 15px;
+          border-radius: 8px;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 0.95rem;
+      }
+      
+      /* עיצוב אייקונים חברתיים במובייל - בדיוק כמו דסקטופ */
+      .mobile-socials-row {
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+          margin-top: auto; /* דוחף לתחתית */
+          padding-bottom: 20px;
+      }
+      .mobile-social-btn {
+          width: 42px; /* גודל זהה לאייקונים בהדר */
+          height: 42px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 8px; /* התאמה לכפתורי הדר (או 50% אם רוצים עיגול מלא) */
+          border: 1px solid var(--border-color);
+          background: rgba(45, 74, 83, 0.3);
+          color: var(--text-heading);
+          font-size: 1.1rem;
+          text-decoration: none;
+          transition: var(--transition);
+      }
+      /* אנימציה וצבעים במעבר עכבר - בדיוק כמו בדסקטופ */
+      .mobile-social-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+      .mobile-social-btn.fb:hover { background: var(--facebook); border-color: var(--facebook); color: white; }
+      .mobile-social-btn.ig:hover { background: var(--instagram); border-color: var(--instagram); color: white; }
+
       .close-menu-btn {
         position: absolute;
         top: 20px;
@@ -586,7 +672,7 @@
         font-size: 0.9rem;
       }
 
-      /* --- אנימציית הבהוב ירוק --- */
+      /* --- Whatsapp Animation --- */
       @keyframes pulse-green {
           0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
           70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
@@ -610,13 +696,12 @@
         text-decoration: none;
         box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
         transition: var(--transition);
-        /* החלת האנימציה */
         animation: pulse-green 2s infinite;
       }
       .floating-whatsapp:hover {
         transform: scale(1.1);
         box-shadow: 0 12px 35px rgba(37, 211, 102, 0.6);
-        animation: none; /* עצירת אנימציה במעבר עכבר */
+        animation: none;
       }
 
       /* Responsive */
@@ -644,16 +729,15 @@
         .hero-buttons {
           justify-content: center;
         }
-        /* הסתרת כל האלמנטים בהדר למעט ההמבורגר */
+        
+        /* Mobile Header Logic */
         .desktop-nav,
         .desktop-actions {
           display: none;
         }
-        /* הסתרה ספציפית של כל הכפתורים באזור הפעולות בהדר (כולל החלפת ערכת נושא) */
         .header-actions .icon-btn {
             display: none;
         }
-        
         .mobile-toggle {
           display: block;
         }
@@ -667,6 +751,13 @@
         .logo {
           font-size: 1.1rem;
         }
+        /* התאמה לפוטר במובייל */
+        footer {
+            padding-bottom: 90px;
+        }
+        .footer-socials {
+            display: none; 
+        }
       }
     </style>
   </head>
@@ -676,9 +767,8 @@
         <div class="logo">BENNY <span>DANIEL</span></div>
 
         <nav class="desktop-nav">
-          <a href="#work">עבודות</a>
-          <a href="#" onclick="openModal('aboutModal')">אודות</a>
-          <a href="#" onclick="openModal('privacyModal')">פרטיות</a>
+          <a href="#work" class="animated-link">עבודות</a>
+          <a href="#" class="animated-link" onclick="openModal('aboutModal')">אודות</a>
         </nav>
 
         <div class="header-actions">
@@ -711,24 +801,25 @@
         <button class="close-menu-btn" onclick="toggleMobileMenu()">
           &times;
         </button>
-        <a href="#work" onclick="toggleMobileMenu()">עבודות</a>
-        <a href="#" onclick="openModal('aboutModal'); toggleMobileMenu()"
-          >אודות</a
-        >
-        <a href="#" onclick="openModal('privacyModal'); toggleMobileMenu()"
-          >מדיניות פרטיות</a
-        >
-        <hr
-          style="
-            border: 0;
-            border-top: 1px solid var(--col-blue); 
-            width: 100%;
-            margin: 10px 0;
-          "
-        />
-        <a href="mailto:email@example.com">שלח מייל</a>
-        <a href="https://wa.me/972537261618">וואטסאפ</a>
-        <a href="tel:0537261618">התקשר</a>
+        
+        <a href="#work" onclick="toggleMobileMenu()"><i class="fas fa-briefcase"></i> עבודות</a>
+        <a href="#" onclick="openModal('aboutModal'); toggleMobileMenu()"><i class="fas fa-user"></i> אודות</a>
+        <a href="mailto:email@example.com"><i class="fas fa-envelope"></i> שלח מייל</a>
+        <a href="https://wa.me/972537261618"><i class="fab fa-whatsapp"></i> וואטסאפ</a>
+        <a href="tel:0537261618"><i class="fas fa-phone"></i> התקשר</a>
+
+        <div class="mobile-settings-area">
+            <h4>הגדרות</h4>
+            <button class="theme-toggle-btn" onclick="toggleTheme()">
+                <span>מצב יום/לילה</span>
+                <i class="fas fa-adjust"></i>
+            </button>
+        </div>
+
+        <div class="mobile-socials-row">
+            <a href="#" class="mobile-social-btn fb"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="mobile-social-btn ig"><i class="fab fa-instagram"></i></a>
+        </div>
       </div>
 
       <main>
@@ -827,7 +918,18 @@
       </main>
 
       <footer>
-        <p>© 2024 בני דניאל. כל הזכויות שמורות.</p>
+        <div class="footer-links">
+            <a href="#" class="animated-link" onclick="openModal('privacyModal')">מדיניות פרטיות</a>
+            <span class="footer-sep">|</span>
+            <a href="#" class="animated-link" onclick="openModal('accessStatementModal')">הצהרת נגישות</a>
+        </div>
+        
+        <div class="footer-socials">
+            <a href="#" class="footer-social-icon fb"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="footer-social-icon ig"><i class="fab fa-instagram"></i></a>
+        </div>
+
+        <p style="margin-top: 10px;">© 2024 בני דניאל. כל הזכויות שמורות.</p>
       </footer>
 
       <a
@@ -848,7 +950,7 @@
           <h3 style="margin-bottom: 10px; text-align: center">נגישות</h3>
 
           <button class="acc-btn" id="ttsBtn" onclick="toggleTtsMode()">
-            <i class="fas fa-volume-up"></i> סמן להקראה
+            <i class="fas fa-hand-pointer"></i> לחץ להקראה
           </button>
           <button
             class="acc-btn"
@@ -883,11 +985,11 @@
           </button>
           <div style="text-align: center; margin-top: 5px">
             <a
+              class="animated-link"
               onclick="closeAccessMenu(); openModal('accessStatementModal')"
               style="
                 cursor: pointer;
                 font-size: 0.8rem;
-                text-decoration: underline;
               "
               >הצהרת נגישות</a
             >
@@ -989,17 +1091,24 @@
               display: flex;
               gap: 10px;
               justify-content: center;
+              flex-wrap: wrap;
             "
           >
-            <input
-              type="checkbox"
-              id="privacyCheckbox"
-              onchange="document.getElementById('privacyCloseBtn').classList.toggle('disabled', !this.checked)"
-            />
-            <label for="privacyCheckbox">קראתי והסכמתי</label>
+            <div style="display:flex; gap:10px; align-items:center;">
+                <input
+                  type="checkbox"
+                  id="privacyCheckbox"
+                  onchange="document.getElementById('privacyCloseBtn').classList.toggle('disabled', !this.checked)"
+                />
+                <label for="privacyCheckbox">קראתי והסכמתי</label>
+            </div>
           </div>
+           <div style="margin-top: 15px;">
+              <button class="animated-link" onclick="closeModals(); openModal('accessStatementModal')" style="background:none; border:none; cursor:pointer;">עבור להצהרת נגישות</button>
+           </div>
         </div>
       </div>
+      
       <div class="modal-overlay" id="aboutModal">
         <div class="modal-content">
           <button class="close-modal" onclick="closeModals()">&times;</button>
@@ -1025,9 +1134,23 @@
         <div class="modal-content">
           <button class="close-modal" onclick="closeModals()">&times;</button>
           <h2>הצהרת נגישות</h2>
-          <div style="text-align: right">
-            <p>האתר הוגש לפי תקן ת"י 5568 ברמה AA.</p>
-            <p>תמיכה בקורא מסך, ניווט מקלדת, והגדלת טקסט.</p>
+          <div style="text-align: right; max-height: 300px; overflow-y: auto; line-height: 1.6; padding: 10px;">
+            <p>אנו בבני דניאל רואים חשיבות רבה במתן שירות שוויוני לכלל הגולשים ובשיפור השירות הניתן לגולשים עם מוגבלות.</p>
+            <br>
+            <h4>רמת הנגישות</h4>
+            <p>האתר הותאם לדרישות תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), תשע"ג 2013. ההתאמות בוצעו עפ"י המלצות התקן הישראלי (ת"י 5568) לנגישות תכנים באינטרנט ברמת AA ומסמך WCAG2.0 הבינלאומי.</p>
+            <br>
+            <h4>תיקונים והתאמות שבוצעו:</h4>
+            <ul style="padding-right: 20px;">
+                <li>האתר מותאם לדפדפנים הנפוצים ולשימוש בטלפון הסלולרי.</li>
+                <li>האתר מספק מבנה סמנטי עבור טכנולוגיות מסייעות ותמיכה בדפוס השימוש המקובל להפעלה עם מקלדת.</li>
+                <li>לשמאל המסך קיים תפריט נגישות המאפשר: הגדלת טקסט, שינוי ניגודיות, ביטול צבעים והקראת טקסט.</li>
+            </ul>
+            <br>
+            <h4>יצירת קשר</h4>
+            <p>אם נתקלתם בקושי לגלוש באתר או שיש לכם הערה בנושא, ניתן ליצור קשר באחת הדרכים הבאות:</p>
+            <p>טלפון: 053-7261618</p>
+            <p>דוא"ל: email@example.com</p>
           </div>
         </div>
       </div>
@@ -1080,16 +1203,27 @@
         document.getElementById("ttsBtn").classList.toggle("tts-active-btn");
         if (!isTtsMode) window.speechSynthesis.cancel();
       }
-      document.addEventListener("mouseup", function () {
+      
+      // שינוי לוגיקה: הקראה בעת קליק על אלמנט
+      document.addEventListener("click", function (e) {
         if (!isTtsMode) return;
-        const text = window.getSelection().toString();
-        if (text.length > 0) {
+        
+        // מניעת הקראה אם לוחצים על תפריט הנגישות עצמו
+        if (e.target.closest('.accessibility-widget')) return;
+
+        // מציאת הטקסט באלמנט עליו לחצו
+        let target = e.target;
+        // לעיתים הלחיצה היא על אייקון בתוך כפתור, אז נחפש טקסט באלמנט או בהורה שלו
+        let text = target.innerText || target.textContent;
+        
+        if (text && text.trim().length > 0) {
           window.speechSynthesis.cancel();
           const u = new SpeechSynthesisUtterance(text);
           u.lang = "he-IL";
           window.speechSynthesis.speak(u);
         }
       });
+
       function resetAccess() {
         document.documentElement.classList.remove("large-text-mode");
         document.body.classList.remove(
